@@ -100,6 +100,11 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+li a:hover {
+	color: #B1663C;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -171,6 +176,12 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#contact a {
+	display: flex;
+	justify-content: center;
+	text-decoration: underline;
+}
+
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -188,3 +199,58 @@ footer nav ul {
 	margin: 2em
 }
 
+.display{
+	display: block;
+}
+
+.hidden{
+	display: none;
+}
+
+
+.center{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.category-button{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: #1D6154;
+	background-color: white;
+	margin: 20px 20px 40px 20px;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	padding: 10px;
+}
+
+.category-button-filled{
+	color: white;
+	background-color: #1D6154;
+}
+
+
+.modify-picture{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 630px;
+	height: 731px;
+	border-radius: 10px;
+}
+
+.picture-container{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	border-bottom: 1px solid #B3B3B3;
+}
+
+.picture-contains{
+	width: 6%;
+}
+
+.picture-contains img{
+	width: 100%;
+}
