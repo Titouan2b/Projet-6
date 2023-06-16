@@ -24,12 +24,14 @@
     </header>
     <main id="contact">
         <h2>Log In</h2>
-        <form action="#" method="post">
+        <p id="errorAPI"></p>
+        <form action="#" method="post" id="form-login">
 			<label for="email">E-mail</label>
 			<input type="email" name="email" id="email">
+            <p id="emailErrorMessage"></p>
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password">
-			<input type="submit" value="Envoyer" id="button" onclick="verifyLogin()">
+			<input type="submit" value="Envoyer" id="button">
 		</form>
         <a href="">Mot de passe oublié</a>
     </main>

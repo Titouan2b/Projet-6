@@ -2,6 +2,39 @@ let works = []
 let categories = []
 const center = document.querySelector(".center")
 const gallery = document.querySelector(".gallery")
+const token = sessionStorage.getItem("token")
+const adminBar = document.querySelector(".admin-bar")
+const login = document.querySelector(".login")
+const logout = document.querySelector(".logout")
+
+console.log(token)
+
+function modAdmin(){
+    if(token){
+        logout.classList.remove("hidden")
+        login.classList.add("hidden")
+    }else{
+        adminBar.classList.add("hidden")
+        logout.classList.add("hidden")
+        login.classList.remove("hidden")
+    }
+}
+modAdmin()
+
+
+function modPublic(){
+    logout.addEventListener("click", (event) => {
+        token === null
+        if(token === null){
+            window.location.reload()
+        }
+        
+    })
+}
+modPublic()
+
+console.log(modPublic())
+
 
 async function getCategories(){
     await fetch("http://localhost:5678/api/categories")
@@ -12,25 +45,38 @@ async function getCategories(){
     .catch((error) => console.log(error))
 }
 
+
 async function displayCategories(){
+    await getWorks()
     await getCategories()
+    categories.unshift({name:"Tous"})
     for(const category of categories){
         console.log(category)
-        center.setAttribute("data-categorieid", category.categoryId)
         const button = document.createElement("button")
         button.setAttribute("class", "category-button")
+        button.setAttribute("data-id", category.id)
         button.innerHTML = category.name
-        button.addEventListener("click", () => {
-            button.classList.contains("category-button-filled")
-            button.classList.remove("category-button-filled")
-            
-        })
         center.appendChild(button)
+        button.addEventListener("click", () =>{
+            let allFigures = document.querySelectorAll(".gallery figure")
+            for (const figure of allFigures) {
+                if(button.getAttribute("data-id") !== "undefined"){
+                    if(parseInt(figure.getAttribute("data-categorieid")) === parseInt(button.getAttribute("data-id"))){
+                        figure.classList.replace("hidden", "display")
+                    }else{
+                        figure.classList.replace("display", "hidden")
+                    }
+                }else{
+                    figure.classList.replace("hidden", "display")
+                }
+            }            
+        })
     }
 }
 
 
 displayCategories()
+
 
 
 
@@ -46,6 +92,7 @@ async function getWorks(){
 async function displayWorks(){
     await getWorks()
     for(const work of works){
+        console.log(work)
         const figure = document.createElement("figure")
         figure.setAttribute("data-categorieid", work.categoryId)
         figure.setAttribute("class", "display")
@@ -68,22 +115,4 @@ displayWorks()
 
 
 
-
-async function deleteWorks(){
-    await fetch("http://localhost:5678/api/works/")
-    .then((response) => response.json())
-    .then((worksResponse) => {
-        works = worksResponse
-    })
-    .catch((error) => console.log(error))
-}
-
-async function postWorks(){
-    await fetch("http://localhost:5678/api/works")
-    .then((response) => response.json())
-    .then((worksResponse) => {
-        works = worksResponse
-    })
-    .catch((error) => console.log(error))
-}
 
