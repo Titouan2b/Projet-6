@@ -16,7 +16,6 @@ closeModal.addEventListener("click", (event) => {
 async function displayWorksOnGallery(){
     await getWorks()
     for(const work of works){
-        console.log(work)
         const figure = document.createElement("figure")
         figure.setAttribute("data-categorieid", work.categoryId)
         figure.setAttribute("class", "picture-contains")
@@ -25,15 +24,23 @@ async function displayWorksOnGallery(){
         img.setAttribute("alt", work.title)
         const figcaption = document.createElement("figcaption")
         figcaption.innerText = 'éditer'
+        img.addEventListener("mouseout", (event) => {
+            const iconeTrash = document.createElement("i")
+            iconeTrash.setAttribute("class", "fa-regular fa-trash-can trash")
+            figure.appendChild(iconeTrash)
+        });
         const iconeTrash = document.createElement("i")
-        iconeTrash.setAttribute("class", "fa-regular fa-trash-can trash")
+            iconeTrash.setAttribute("class", "fa-regular fa-trash-can trash")
+            figure.appendChild(iconeTrash)
         img.addEventListener("mouseover", (event) => {
             const iconeMove = document.createElement("i")
             iconeMove.setAttribute("class", "fa-solid fa-arrows-up-down-left-right move")
             figure.appendChild(iconeMove)
+            const iconeTrash = document.createElement("i")
+            iconeTrash.setAttribute("class", "fa-regular fa-trash-can trash")
+            figure.appendChild(iconeTrash)
         });
         figure.appendChild(img)
-        figure.appendChild(iconeTrash)
         figure.appendChild(figcaption)
         pictureContainer.appendChild(figure)
     }

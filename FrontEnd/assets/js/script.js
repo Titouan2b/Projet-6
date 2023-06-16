@@ -51,7 +51,6 @@ async function displayCategories(){
     await getCategories()
     categories.unshift({name:"Tous"})
     for(const category of categories){
-        console.log(category)
         const button = document.createElement("button")
         button.setAttribute("class", "category-button")
         button.setAttribute("data-id", category.id)
@@ -92,7 +91,6 @@ async function getWorks(){
 async function displayWorks(){
     await getWorks()
     for(const work of works){
-        console.log(work)
         const figure = document.createElement("figure")
         figure.setAttribute("data-categorieid", work.categoryId)
         figure.setAttribute("class", "display")
