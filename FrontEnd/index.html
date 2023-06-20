@@ -32,6 +32,9 @@
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<div class="edit">
+				<i class="fa-solid fa-pen-to-square"></i><p>modifier</p>
+			</div>
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -43,7 +46,9 @@
 	<section id="portfolio">
 		<div class="gallery-edit-center">
 			<h2>Mes Projets</h2>
-			<i class="fa-solid fa-pen-to-square"></i><p class="gallery-edit">modifier</p>
+			<div class="gallery-edit">
+				<i class="fa-solid fa-pen-to-square"></i><p>modifier</p>
+			</div>
 		</div>
 		<div class="center">
 		</div>
@@ -82,9 +87,29 @@
 			<button class="new">Ajouter une photo</button>
 			<p class=delete>Supprimer la galerie</p>
 		</div>
-		<div class="add-project-form">
+		<div class="second-modal-container">
+			<form class="add-project-form" action="/" method="POST" enctype="multipart/form-data">
+				<h2>Ajout photo</h2>
+				<i class="fa-solid fa-arrow-left arrow-left"></i>
+				<i class="fa-solid fa-xmark close"></i>
+				<div class="input-image">
+					<i class="fa-solid fa-image"></i>
+					<label for="file" class="label-file">+ Ajout photo</label>
+					<input id="file" class="input-file" type="file" accept="image/png, image/jpeg">
+					<p>jpg, png : 4mo max</p>
+				</div>
+				<h3>Titre</h3>
+				<input class="input-title" type="text">
+				<h3>Catégorie</h3>
+				<select class="input-category">
+					<option value="">veuillez selectionné une catégorie</option>
+				</select>
+				<hr>
+				<button type="submit" class="validate">Valider</button>
+			</form>
 		</div>
 	</div>
+	
 </div>
 </body>
 <script src="./assets/js/script.js"></script>

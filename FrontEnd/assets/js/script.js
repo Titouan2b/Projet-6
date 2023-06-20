@@ -2,12 +2,15 @@ let works = []
 let categories = []
 const center = document.querySelector(".center")
 const gallery = document.querySelector(".gallery")
-const token = sessionStorage.getItem("token")
+let token = sessionStorage.getItem("token")
 const adminBar = document.querySelector(".admin-bar")
 const login = document.querySelector(".login")
 const logout = document.querySelector(".logout")
+const editGallery = document.querySelector(".gallery-edit")
+const edit = document.querySelector(".edit")
 
 console.log(token)
+
 
 function modAdmin(){
     if(token){
@@ -17,6 +20,8 @@ function modAdmin(){
         adminBar.classList.add("hidden")
         logout.classList.add("hidden")
         login.classList.remove("hidden")
+        editGallery.classList.add("hidden")
+        edit.classList.add("hidden")
     }
 }
 modAdmin()
@@ -24,8 +29,9 @@ modAdmin()
 
 function modPublic(){
     logout.addEventListener("click", (event) => {
-        token === null
-        if(token === null){
+        token = ""
+        sessionStorage.clear()
+        if(token === ""){
             window.location.reload()
         }
         

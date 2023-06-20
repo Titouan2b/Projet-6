@@ -64,7 +64,6 @@ function formValidation(){
 formValidation()
 async function adminValidator(loginResponse){
     await formValidation()
-    // const tokenId = tokenId.token
     console.log(loginResponse)
     if(loginResponse.error || loginResponse.message === "user not found"){
         errorAPI.innerHTML = "email ou mot de passe incorrect"
