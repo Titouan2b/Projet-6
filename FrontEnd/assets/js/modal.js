@@ -5,6 +5,7 @@ const closeModal = document.querySelector(".absolute")
 const buttonNewProject = document.querySelector(".new")
 const displayModalNewProject = document.querySelector(".second-modal-container")
 const returnModal = document.querySelector(".arrow-left")
+const closeSecondModal = document.querySelector(".close")
 
 editGallery.addEventListener("click", (event) =>{
     displayModal.classList.toggle("hidden")
@@ -17,6 +18,10 @@ closeModal.addEventListener("click", (event) => {
 
 returnModal.addEventListener("click", (event) => {
     displayModalNewProject.classList.toggle("hidden")
+})
+
+closeSecondModal.addEventListener("click", () =>{
+    displayModal.classList.toggle("hidden")
 })
 
 
@@ -64,7 +69,6 @@ buttonNewProject.addEventListener("click", (event) =>{
 
 
 async function deleteWorks(id){
-    console.log(id)
     await fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
         headers: {
@@ -91,27 +95,96 @@ async function postWorks(){
 }
 
 const form = document.querySelector(".add-project-form")
+const selectCategory = document.querySelector(".select-category")
+const inputTitle = document.querySelector(".input-title")
+const inputImage = document.querySelector(".input-file")
 
 form.addEventListener("submit", (event) => {
-
-
-
+    event.preventDefault()
+    event.stopPropagation()
+    let title = inputTitle.value
+    let categorie = parseInt(selectCategory.value)
+    let image = inputImage.files[0]
+    if(title !== "" && categorie !== "" && image !== ""){
     let formData = new FormData()
-    formData.append("image", $image)
-    formData.append("title", $title)
-    formData.append("categorie", $categorie)
+    formData.append("title", title)
+    formData.append("image", image)
+    formData.append("category", categorie)
     fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
-            "Content-Type":"application/json;charset=utf-8",
-            "accept":"*/*",
             "authorization":`Bearer ${token}`,
         },
         body: formData
     })
     .then((response) => response.json())
     .then((data) => {
-
+        console.log(data)
+        displayWorks()
+        displayWorksOnGallery()
     })
     .catch((error) => console.log(error))
+}else{
+
+}
+})
+
+const buttonValidate = document.querySelector(".validate")
+
+let compteur = 0
+
+function changeInputTitle(){
+    compteur++
+    console.log("title")
+    if(compteur >= 3){
+        buttonValidate.classList.toggle("validate-green")
+    }
+}
+
+
+function changeInputImage(){
+    compteur++
+    console.log("image")
+    console.log(compteur >= 3)
+    if(compteur >= 3){
+        buttonValidate.classList.toggle("validate-green")
+    }
+}
+
+
+
+function changeSelectCategory() {
+    console.log("select")
+    compteur++
+    if(compteur >= 3){
+        buttonValidate.classList.toggle("validate-green")
+    }
+    console.log(compteur)
+    console.log(buttonValidate)
+
+}
+
+
+inputTitle.addEventListener("change", changeInputTitle)
+selectCategory.addEventListener("change", changeSelectCategory)
+
+
+function displayImage(event){
+    
+}
+inputImage.addEventListener("change", function(event){
+    changeInputImage() 
+    console.log(event)
+    let imageFile = this.files[0]
+    console.log(imageFile)
+    const imageDownload = document.getElementById("imageDownload")
+    const imageDisplay = document.querySelector(".input-image-center")
+    if(imageFile){
+        const reader = new FileReader()
+        reader.onload = function(e){
+            imageDownload.src = e.target.result
+    };
+    imageDisplay.classList.toggle("hidden")
+    reader.readAsDataURL(imageFile);
+    }
 })

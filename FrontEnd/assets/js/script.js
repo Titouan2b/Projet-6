@@ -9,7 +9,6 @@ const logout = document.querySelector(".logout")
 const editGallery = document.querySelector(".gallery-edit")
 const edit = document.querySelector(".edit")
 
-console.log(token)
 
 
 function modAdmin(){
@@ -34,12 +33,9 @@ function modPublic(){
         if(token === ""){
             window.location.reload()
         }
-        
     })
 }
 modPublic()
-
-console.log(modPublic())
 
 
 async function getCategories(){
