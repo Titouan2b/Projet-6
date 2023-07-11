@@ -62,6 +62,8 @@ function formValidation(){
     })
 }
 formValidation()
+
+
 async function adminValidator(loginResponse){
     await formValidation()
     console.log(loginResponse)

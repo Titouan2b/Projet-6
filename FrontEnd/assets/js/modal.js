@@ -169,9 +169,6 @@ inputTitle.addEventListener("change", changeInputTitle)
 selectCategory.addEventListener("change", changeSelectCategory)
 
 
-function displayImage(event){
-    
-}
 inputImage.addEventListener("change", function(event){
     changeInputImage() 
     console.log(event)
