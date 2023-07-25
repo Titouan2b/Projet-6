@@ -75,6 +75,6 @@ async function adminValidator(loginResponse){
     const token = loginResponse.token
     sessionStorage.setItem("connected", connected)
     sessionStorage.setItem("token", token)
-    location.href = '/FrontEnd/index.html'
+    location.href = '../../index.html'
 }
 

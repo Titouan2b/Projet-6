@@ -15,6 +15,7 @@ function modAdmin(){
     if(token){
         logout.classList.remove("hidden")
         login.classList.add("hidden")
+        center.classList.toggle("hidden")
     }else{
         adminBar.classList.add("hidden")
         logout.classList.add("hidden")
@@ -92,6 +93,7 @@ async function getWorks(){
 
 async function displayWorks(){
     await getWorks()
+    gallery.innerHTML = ""
     for(const work of works){
         const figure = document.createElement("figure")
         figure.setAttribute("data-categorieid", work.categoryId)
